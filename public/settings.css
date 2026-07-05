@@ -1,0 +1,358 @@
+/* ==============================
+   🌿 GIAO DIỆN CHUNG
+============================== */
+.settings-container {
+  background: #111;
+  color: #eee;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 255, 100, 0.1);
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+.page-title {
+  color: #7fff7f;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+/* ==============================
+   📁 TABS
+============================== */
+.settings-tabs {
+  display: flex;
+  border-bottom: 1px solid #222;
+  margin-bottom: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.tab-item {
+  padding: 10px 20px;
+  cursor: pointer;
+  color: #aaa;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tab-item:hover {
+  color: #7fff7f;
+}
+
+.tab-item.active {
+  color: #7fff7f;
+  border-bottom: 2px solid #7fff7f;
+}
+
+.tab-content {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* ==============================
+   📊 DASHBOARD THỐNG KÊ
+============================== */
+.library-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px;
+}
+
+.stat-card {
+  background: #1a1a1a;
+  border: 1px solid #222;
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 0 10px rgba(0, 255, 120, 0.08);
+  transition: 0.25s;
+}
+
+.stat-card i {
+  font-size: 24px;
+  color: #7fff7f;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 15px rgba(0, 255, 120, 0.15);
+}
+
+.stat-info h4 {
+  margin: 0;
+  font-size: 15px;
+  color: #ccc;
+}
+
+.stat-info p {
+  font-size: 20px;
+  color: #7fff7f;
+  font-weight: 600;
+  margin: 2px 0 0;
+}
+
+/* ==============================
+   👤 USER HEADER + BUTTON
+============================== */
+.user-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.btn-add {
+  background: #7fff7f;
+  color: #000;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-add:hover {
+  background: #57ff57;
+  transform: scale(1.05);
+}
+
+/* ==============================
+   🔍 THANH TÌM KIẾM
+============================== */
+.library-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+}
+
+.library-search {
+  display: flex;
+  gap: 8px;
+}
+
+.library-search input {
+  background: #1a1a1a;
+  color: #fff;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 8px 12px;
+  width: 260px;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.library-search input:focus {
+  border-color: #7fff7f;
+  box-shadow: 0 0 6px rgba(0, 255, 120, 0.3);
+  outline: none;
+}
+
+.library-search button {
+  background: #00c853;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background 0.3s;
+  color: #fff;
+}
+
+.library-search button:hover {
+  background: #00e676;
+}
+
+/* ==============================
+   🧾 BẢNG CHUNG (USER + BOOK)
+============================== */
+.user-table,
+.book-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #121212;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 255, 100, 0.05);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 13.5px;
+  line-height: 1.35;
+}
+
+/* Header */
+.user-table thead,
+.book-table thead {
+  background: #1a1a1a;
+}
+
+.user-table th,
+.book-table th {
+  color: #7fff7f;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 12.5px;
+  letter-spacing: 0.5px;
+  padding: 8px 10px;
+  border-bottom: 1px solid #252525;
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* Zebra stripe */
+.user-table tbody tr:nth-child(even),
+.book-table tbody tr:nth-child(even) {
+  background: #141414;
+}
+
+.user-table tbody tr:nth-child(odd),
+.book-table tbody tr:nth-child(odd) {
+  background: #101010;
+}
+
+/* Hover mượt */
+.user-table tr:hover td,
+.book-table tr:hover td {
+  background: #1b1b1b;
+  transform: scale(1.001);
+}
+
+/* Giảm chiều cao hàng */
+.user-table tr,
+.book-table tr {
+  height: 42px;
+  transition: background 0.2s;
+}
+
+/* Cột hình ảnh nhỏ gọn */
+.user-table td img,
+.book-table td img {
+  width: 38px;
+  height: auto;
+  border-radius: 5px;
+  display: block;
+  margin: 0 auto;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Cột đầu tiên (ảnh) */
+.user-table td:first-child,
+.book-table td:first-child {
+  width: 60px;
+}
+
+/* Cột văn bản dài (thể loại, tên...) */
+.user-table td:nth-child(2),
+.book-table td:nth-child(2),
+.user-table td:nth-child(3),
+.book-table td:nth-child(3) {
+  max-width: 280px;
+  word-break: break-word;
+  white-space: normal;
+}
+
+/* ==============================
+   🔑 CỘT MẬT KHẨU
+============================== */
+.password-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.password-text {
+  font-family: "JetBrains Mono", monospace;
+  color: #ccc;
+  letter-spacing: 2px;
+  font-size: 13px;
+}
+
+.toggle-btn {
+  background: #1f1f1f;
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 3px 6px;
+  cursor: pointer;
+  color: #aaa;
+  transition: all 0.2s ease;
+}
+
+.toggle-btn:hover {
+  color: #7fff7f;
+  background: #262626;
+  border-color: #3a3a3a;
+}
+
+/* ==============================
+   ⚙️ CỘT HÀNH ĐỘNG
+============================== */
+td.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  min-width: 100px;
+}
+
+.action-btn {
+  width: 28px;
+  height: 28px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #222;
+  border-radius: 6px;
+  color: #bbb;
+  transition: all 0.2s ease;
+  border: 1px solid #2a2a2a;
+}
+
+.action-btn:hover {
+  background: #00c853;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.action-btn.delete:hover {
+  background: #d32f2f;
+}
+
+/* ==============================
+   🪶 SCROLL BẢNG
+============================== */
+.table-wrapper {
+  max-height: 550px;
+  overflow-y: auto;
+  border-radius: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: #7fff7f #111;
+}
+
+.table-wrapper::-webkit-scrollbar {
+  width: 6px;
+}
+.table-wrapper::-webkit-scrollbar-thumb {
+  background-color: #7fff7f;
+  border-radius: 3px;
+}
+.table-wrapper::-webkit-scrollbar-track {
+  background: #111;
+}
+
+/* ==============================
+   ✨ ANIMATION
+============================== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}

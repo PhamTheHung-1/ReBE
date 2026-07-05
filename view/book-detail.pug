@@ -1,0 +1,135 @@
+extends layout.pug
+
+block content
+  .book-detail
+    .book-detail-container
+      // Ảnh bìa
+      .book-detail-cover
+        img(src=book.image, alt=book.title)
+
+      // Thông tin
+      .book-info
+        h1.book-detail-title= book.title
+        p.book-detail-author= book.author
+
+        // Thẻ genres
+        .genres
+          each genre in book.genres.split(',')
+            span.genre-detail-tag= genre.trim()
+
+        // Thông tin chi tiết
+        .details
+          .detail-columns
+            .detail-column
+              p
+                strong Kiểu File: 
+                 span.badge.epub #{book.fileType || 'PDF'}
+              p
+                strong Trạng Thái Đọc: 
+                span.badge.status #{book.status || 'Unread'}
+              p
+                strong Ngôn ngữ: 
+                span.badge.status #{book.language || '-'}
+
+            .detail-column
+              p
+                strong NXB: 
+                | #{book.publisher || 'Unknown'}
+
+              p
+                strong Số Trang: 
+                | #{book.page || '-'}
+
+            .detail-column
+              p
+                strong Ngày bắt đầu đọc: 
+                | #{book.startDay ? new Date(book.startDay).toLocaleDateString('vi-VN') : '-'}
+              p
+                strong Ngày đọc xong: 
+                | #{book.endDay ? new Date(book.endDay).toLocaleDateString('vi-VN') : '-'}
+
+
+        // Nút hành động
+        .actions
+          button.btn.read
+            i(class="fa-solid fa-book-open")
+            |  Đọc
+          a.btn.download(href=`/update-book/${book._id}`)
+            i(class="fa-solid fa-pencil", href=`/update-book/${book._id}`)
+            |  Edit Data
+          button.btn.auto
+            i(class="fa-regular fa-heart")
+            |  Yêu thích
+
+    // Mô tả sách
+    .book-description
+      p= book.description
+
+
+  section.book-footer
+    .footer-tabs
+      button.tab.active(data-tab="notes")
+        i(class="fa-regular fa-note-sticky")
+        | Ghi Chú
+      button.tab(data-tab="reviews")
+        i(class="fa-regular fa-star")
+        | Đánh Giá
+
+    // Notes Section
+    .tab-content#notes
+      if book.notes && book.notes.length
+        each note in book.notes
+          .note-card
+            h3= note.title
+            .note-meta
+              i(class="fa-regular fa-clock")
+              |  #{new Date(note.createdAt).toLocaleString('vi-VN')}
+            p= note.content
+            .note-actions
+              a(href=`/book/${book._id}/edit-note/${note._id}`): i(class="fa-solid fa-pen-to-square")
+              a(href=`/book/${book._id}/delete-note/${note._id}`): i(class="fa-solid fa-trash")
+      else
+        .empty-note
+          i(class="fa-solid fa-plus-circle")
+          h3 Chưa có ghi chú được thêm
+          p Nhấn vào "Thêm ghi chú" để lưu ghi chú đầu tiên của bạn
+
+
+    // Reviews Section
+    .tab-content#reviews.hidden
+      p Không có đánh giá nào.
+
+    script(src="/footer.js") 
+
+  .overlay
+  .note-popup
+    .popup-container
+      h3.popup-title Thêm ghi chú
+      form#noteForm(action=`/book/${book._id}/add-note` method="POST")
+        label(for="title") Tiêu đề
+        input(type="text" name="title" placeholder="Nhập tiêu đề..." required)
+        label(for="content") Nội dung
+        textarea(name="content" placeholder="Nhập nội dung ghi chú..." required)
+        .popup-actions
+          button.btn.cancel(type="button") Hủy
+          button.btn.save(type="submit")
+            i(class="fa-solid fa-floppy-disk")
+            |  Lưu Ghi Chú
+
+  .note-popup.edit-popup.hide
+    .popup-container
+      h3.popup-title Chỉnh sửa ghi chú
+      form#editNoteForm(method="POST")
+        input(type="hidden" name="noteId")
+        label(for="title") Tiêu đề
+        input(type="text" name="title" placeholder="Nhập tiêu đề..." required)
+        label(for="content") Nội dung
+        textarea(name="content" placeholder="Nhập nội dung..." required)
+        .popup-actions
+          button.btn.cancel(type="button") Hủy
+          button.btn.save(type="submit")
+            i(class="fa-solid fa-floppy-disk")
+            |  Lưu thay đổi
+
+
+

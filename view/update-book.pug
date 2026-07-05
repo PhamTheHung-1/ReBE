@@ -1,0 +1,68 @@
+extends layout
+
+block content
+  section.book-form-container
+    h2.form-title Chỉnh sửa thông tin sách
+    form.book-form(action=`/update-book/${book._id}` method="POST" enctype="multipart/form-data")
+      .form-left
+        label Ảnh bìa
+        .cover-preview
+          img#preview(src=book.image || "/img/default-cover.jpg", alt="Ảnh bìa")
+        input(type="file" name="image" accept="image/*" id="coverInput")
+
+      .form-right
+        .form-row
+          .form-group
+            label(for="title") Tên sách
+            input(type="text" name="title" value=book.title required)
+          .form-group
+            label(for="author") Tác giả
+            input(type="text" name="author" value=book.author)
+
+        .form-row
+          .form-group
+            label(for="publisher") Nhà xuất bản
+            input(type="text" name="publisher" value=book.publisher)
+          .form-group
+            label(for="genres") Thể loại
+            input(type="text" name="genres" value=book.genres)
+        .form-row
+          .form-group
+            label(for="language") Ngôn ngữ
+            input(type="text" name="language" value=book.language)
+          .form-group
+            label(for="page") Số trang
+            input(type="number" name="page" value=book.page)
+
+        .form-row
+          .form-group
+            label(for="status") Trạng thái
+            select(name="status")
+              option(value="Chưa đọc" selected=book.status==='Chưa đọc') Chưa đọc
+              option(value="Đang đọc" selected=book.status==='Đang đọc') Đang đọc
+              option(value="Mới thêm vào" selected=book.status==='Mới thêm vào') Mới thêm vào
+              option(value="Chưa đụng" selected=book.status==="Chưa đụng") Chưa đụng
+              option(value="Đã hoàn thành" selected=book.status==='Đã hoàn thành') Đã hoàn thành
+          .form-group
+            label(for="startDay") Ngày bắt đầu đọc
+            input(type="date" name="startDay" value=book.startDay)
+
+        .form-row
+          .form-group
+            label(for="endDay") Ngày kết thúc
+            input(type="date" name="endDay" value=book.endDay)
+
+        .form-row
+          .form-group.full
+            label(for="description") Mô tả
+            textarea(name="description" rows="5")= book.description
+
+        .form-actions
+          button.btn.save(type="submit")
+            i(class="fa-solid fa-floppy-disk")
+            |  Cập nhật
+          a.btn.cancel(href=`/book/${book._id}`)
+            i(class="fa-solid fa-xmark")
+            |  Hủy
+
+  script(src="/update-book.js")

@@ -1,0 +1,115 @@
+extends layout
+
+block content
+  section.settings-container
+    h2.page-title Cài Đặt
+
+    // --- Tabs ---
+    ul.settings-tabs
+      li.tab-item(class=(activeTab === 'dashboard' ? 'active' : ''))(data-tab="dashboard") 📊 Bảng quản lý
+      li.tab-item(class=(activeTab === 'user' ? 'active' : ''))(data-tab="user") 👥 Quản lý người dùng
+      li.tab-item(class=(activeTab === 'library' ? 'active' : ''))(data-tab="library") 📚 Quản lý sách
+
+    // --- Nội dung từng tab ---
+    .settings-content
+
+      // ===== DASHBOARD TAB =====
+      .tab-content#dashboard.active
+        h3.section-title Thống kê dữ liệu
+        .library-stats
+          .stat-card
+            i(class="fa-solid fa-book-open")
+            .stat-info
+              h4 Tổng số sách
+              p= totalBooks
+          .stat-card
+            i(class="fa-solid fa-book-reader")
+            .stat-info
+              h4 Đang đọc
+              p= readingCount
+          .stat-card
+            i(class="fa-solid fa-check-double")
+            .stat-info
+              h4 Đã hoàn thành
+              p= completedCount
+          .stat-card
+            i(class="fa-solid fa-layer-group")
+            .stat-info
+              h4 Thể loại
+              p= genresCount
+
+      // ===== USER TAB =====
+      .tab-content#user
+        .user-header
+          h3.section-title Danh sách user
+          a.btn-add(href="/create-user")
+            i(class="fa-solid fa-user-plus" title="Thêm user")
+
+        table.user-table
+          thead
+            tr
+              th Tên đăng nhập
+              th Mật khẩu
+              th Họ tên
+              th Vai trò
+              th Hành động
+          tbody
+            each user in users
+              tr
+                td= user.username
+                td.password-cell
+                  span.password-text(data-password=user.password) ********
+                  button.toggle-btn(type="button" onclick="togglePassword(this)")
+                    i(class="fa-solid fa-eye-slash")
+                td= user.fullname
+                td= user.role
+                td.actions
+                  a.action-btn.edit(href=`/update-user/${user._id}` title="Chỉnh sửa")
+                    i(class="fa-solid fa-pen")
+                  a.action-btn.delete(href=`/delete-user/${user._id}` title="Xóa" onclick="return confirm('Bạn chắc chắn muốn xóa người dùng này?')")
+                    i(class="fa-solid fa-trash")
+
+      .tab-content#library
+        h3.section-title Quản lý sách
+
+        // --- Thanh tìm kiếm ---
+        .library-header
+          form.library-search(action="/settings" method="GET")
+            input(type="hidden" name="tab" value="library")
+            input(type="text" name="search" placeholder="Tìm theo tên, tác giả, thể loại..." value=search)
+            button(type="submit")
+              i(class="fa-solid fa-magnifying-glass")
+
+        // --- Bảng danh sách sách ---
+        table.user-table
+          thead
+            tr
+              th Ảnh
+              th Tên sách
+              th Tác giả
+              th Thể loại
+              th Trạng thái
+              th Ngôn ngữ
+              th Nhà xuất bản
+              th Hành động
+          tbody
+            each book in books
+              tr
+                td
+                  if book.image
+                    img(src=book.image, alt=book.title, style="width:50px; height:auto; border-radius:4px;")
+                  else
+                    span Không có ảnh
+                td= book.title
+                td= book.author
+                td= book.genres
+                td= book.status
+                td= book.language
+                td= book.publisher
+                td.actions
+                  a.action-btn.edit(href=`/edit-book/${book._id}` title="Chỉnh sửa")
+                    i(class="fa-solid fa-pen")
+                  a.action-btn.delete(href=`/delete-book/${book._id}` title="Xóa" onclick="return confirm('Bạn chắc chắn muốn xóa sách này?')")
+                    i(class="fa-solid fa-trash")
+
+  script(src="/settings.js")

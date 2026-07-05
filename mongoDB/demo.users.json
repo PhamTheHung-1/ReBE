@@ -1,0 +1,32 @@
+[{
+  "_id": {
+    "$oid": "68ebb50f63df397cc87b81ee"
+  },
+  "username": "admin@example.com",
+  "fullname": "Pham The Hung",
+  "role": "admin",
+  "salt": "b2f5bd8a9e3df03ffb2e56bfdd4ffbd8",
+  "hpass": "5dbf7b2e15eadaaa64fc319efe15e7ee689e61ae9b8395d61e0671ca3ca14c30"
+},
+{
+  "_id": {
+    "$oid": "68fda2538242bb60444c31ef"
+  },
+  "username": "hung123",
+  "fullname": "Pham The Hung",
+  "password": "090204",
+  "role": "lecturer",
+  "salt": "8b591ac37a2a2bf1ecc5d45811de1a27",
+  "hpass": "9cf701c991bcd0393536488a064fe1717a6852e629fdc25733c3c9781745b234"
+},
+{
+  "_id": {
+    "$oid": "68fde4901472f61e9788c5c6"
+  },
+  "username": "an020405",
+  "fullname": "Le Minh An",
+  "role": "student",
+  "password": "123456",
+  "salt": "e71814b67a33eadab5a43fc89c459bea",
+  "hpass": "21300baa5b43e324c8d181091ea2f2d70325aef353e83c1fef84810ce4c9ba10"
+}]

@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  .modal-overlay
+    .modal-container
+      h2.modal-title Cập nhật thông tin người dùng
+
+      form(action=`/update-user/${user._id}` method="post" class="user-form")
+        .form-group
+          label(for="username") Tên đăng nhập
+          input(type="text" name="username" value=user.username readonly)
+
+        .form-group
+          label(for="fullname") Họ và tên
+          input(type="text" name="fullname" value=user.fullname required)
+        
+        .form-group
+          label(for="password") Mật khẩu
+          input(type="password" name="password" value=user.password)
+
+        .form-group
+          label(for="role") Vai trò
+          select(name="role")
+            option(value="student" selected=(user.role==='student')) Sinh viên
+            option(value="lecturer" selected=(user.role==='lecturer')) Giảng viên
+            option(value="admin" selected=(user.role==='admin')) Quản trị viên
+
+        .form-actions
+          a.btn-cancel(href="/settings") Hủy
+          button.btn-save(type="submit")
+            i(class="fa-solid fa-floppy-disk")

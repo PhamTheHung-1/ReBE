@@ -1,0 +1,68 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title BookMark
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css")
+    link(rel="stylesheet", href="/header.css")
+  body
+    // Navbar
+    header.navbar
+      .logo
+        i(class="fa-solid fa-book-open" href="/") 
+        span Book
+        span.mark mark
+      .menu-icon
+        i(class="fa-solid fa-bars")
+      form.search-container(action="/search" method="GET")
+        input.search(type="text", name="searchQuery" placeholder="Tìm kiếm theo tên Tác giả, Tác phẩm, Thể loại...")
+      .nav-icons
+        button.icon-btn: i(class="fa-solid fa-chart-bar")
+        a(href="/settings")
+          button.icon-btn: i(class="fa-solid fa-gear" title="Cài đặt")
+        button.icon-btn: i(class="fa-regular fa-user")
+        button.icon-btn(onclick="window.location='/logout'" title="Đăng xuất")
+          i(class="fa-solid fa-right-from-bracket")
+
+
+
+    // Sidebar
+    aside.sidebar
+      nav
+        h4 Trang chủ
+        ul
+          li: a(href="/")
+            i(class="fa-solid fa-house")
+            span Trang chủ
+          li: a(href="/books")
+            i(class="fa-solid fa-book")
+            span Tất cả sách        
+            if typeof totalBooks !== 'undefined'
+              span.count= `(${totalBooks})`
+        h4 Thư Viện +
+        ul
+          li: a(href="/books/novel")
+            i(class="fa-solid fa-book-open-reader")
+            span Tiểu thuyết
+            if typeof novelCount !== 'undefined'
+              span.count= `(${novelCount})`
+          li: a(href="/books/comic&manga")
+            i(class="fa-solid fa-book")
+            span Truyện tranh
+            if typeof comicCount !== 'undefined'
+              span.count= `(${comicCount})`
+          li: a(href="/books/technology")
+            i(class="fa-solid fa-mobile")
+            span Công Nghệ
+            if typeof techCount !== 'undefined'
+              span.count= `(${techCount})`
+        h4 Giá sách
+        ul
+          li: a(href="#")
+            i(class="fa-solid fa-star")
+            span Yêu thích
+      .version Beta
+
+
+    script(src="/header.js")

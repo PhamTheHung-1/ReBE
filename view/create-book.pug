@@ -1,0 +1,63 @@
+extends layout
+
+block content
+  section.book-form-container
+    h2.form-title Thêm Sách Mới
+    form.book-form(action="/create-book" method="POST" enctype="multipart/form-data")
+      .form-left
+        label Ảnh bìa
+        .cover-preview
+          img#preview(src="/img/default-cover.jpg", alt="Ảnh bìa")
+        input(type="file" name="image" accept="image/*" id="coverInput")
+
+      .form-right
+        .form-row
+          .form-group
+            label(for="title") Tên sách
+            input(type="text" name="title" required placeholder="Nhập tên sách...")
+          .form-group
+            label(for="author") Tác giả
+            input(type="text" name="author" placeholder="Nhập tên tác giả...")
+        .form-row
+          .form-group
+            label(for="publisher") Nhà xuất bản
+            input(type="text" name="publisher" placeholder="Nhà xuất bản")
+          .form-group
+            label(for="genres") Thể loại
+            input(type="text" name="genres" placeholder="Thể loại")
+        .form-row
+          .form-group
+            label(for="language") Ngôn ngữ
+            input(type="text" name="language" placeholder="Ngôn ngữ")
+          .form-group
+            label(for="page") Số trang
+            input(type="number" name="page" min="1" placeholder="Nhập số trang...")
+        .form-row
+          .form-group
+            label(for="status") Trạng thái
+            select(name="status")
+              option(value="Chưa đọc") Chưa đọc
+              option(value="Đang đọc") Đang đọc
+              option(value="Mới thêm vào") Mới thêm vào
+              option(value="Chưa đụng") Chưa đụng
+              option(value="Đã hoàn thành") Đã hoàn thành
+          .form-group
+            label(for="startDay") Ngày bắt đầu đọc
+            input(type="date" name="startDay")
+        .form-row
+          .form-group
+            label(for="endDay") Ngày kết thúc
+            input(type="date" name="endDay")
+        .form-row
+          .form-group.full
+            label(for="description") Mô tả
+            textarea(name="description" rows="5" placeholder="Tóm tắt hoặc mô tả ngắn về sách...")
+        .form-actions
+          button.btn.save(type="submit")
+            i(class="fa-solid fa-floppy-disk")
+            |  Lưu sách
+          a.btn.cancel(href=`/books`)
+            i(class="fa-solid fa-xmark")
+            |  Hủy
+
+    script(src="/update-book.js")

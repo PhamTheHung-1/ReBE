@@ -1,0 +1,582 @@
+body {
+  background: #111;
+  color: #ddd;
+  font-family: "Inter", sans-serif;
+}
+
+.book-detail {
+  padding: 30px 20px;
+  color: #e6e6e6;
+  background-color: #111;
+  font-family: "Inter", sans-serif;
+}
+
+.page-title {
+  color: #7fff7f;
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.book-detail-container {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  background: #1a1a1a;
+  border: 1px solid #2b2b2b;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+.book-detail-cover img {
+  width: 360px;     /* 👈 Tăng kích thước ảnh bìa */
+  height: 510px;    /* Giữ tỉ lệ dọc */
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease;
+}
+
+.book-detail-cover img:hover {
+  transform: scale(1.03);
+}
+
+.book-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-bottom: 60px;
+}
+
+.book-detail-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.book-detail-author {
+  font-size: 17px;
+  color: #7fff7f;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+.genre-detail-tag {
+  background: #2a2a2a;
+  border: 1px solid #3a3a3a;
+  color: #ddd;
+  font-size: 13px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
+}
+.genre-tag:hover {
+  background: #7fff7f20;
+  color: #7fff7f;
+}
+
+.details {
+  margin-top: 20px;
+  background: #1a1a1a;
+  border: 1px solid #2b2b2b;
+  border-radius: 10px;
+  padding: 20px 25px;
+}
+
+.detail-columns {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.detail-column {
+  flex: 1;
+}
+
+.detail-column p {
+  margin: 8px 0;
+  font-size: 15px;
+  color: #ccc;
+}
+
+.detail-column strong {
+  color: #fff;
+  font-weight: 600;
+  margin-right: 6px;
+}
+
+/* ====== Badge / Nhãn nhỏ ====== */
+.badge {
+  display: inline-block;
+  font-size: 12px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+  color: #fff;
+  margin-left: 4px;
+}
+
+.badge.epub {
+  background: #4b4bd1;
+}
+
+.badge.status {
+  background: #7a7a7a;
+}
+
+.badge.progress {
+  background: #467afc;
+}
+
+.badge.match {
+  background: #339966;
+}
+
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 90px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn.read {
+  background: #2a6;
+  color: white;
+}
+.btn.download {
+  background: #222;
+  color: #7fff7f;
+  border: 1px solid #333;
+}
+.btn.auto {
+  background: #333;
+  color: #fb6f92;
+}
+.btn:hover {
+  opacity: 0.9;
+}
+
+.book-description {
+  margin-top: 25px;
+  background: #1a1a1a;
+  border: 1px solid #2b2b2b;
+  border-radius: 10px;
+  padding: 20px 25px;
+  line-height: 1.7;
+  font-size: 15px;
+  color: #ccc;
+}
+
+.book-description p + p {
+  margin-top: 15px;
+}
+
+/* ==============================
+   Footer Tabs (Notes / Reviews / Similar)
+   ============================== */
+
+.book-footer {
+  margin-top: 30px;
+  background: #1a1a1a;
+  border: 1px solid #2b2b2b;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.footer-tabs {
+  display: flex;
+  justify-content: flex-start;
+  gap: 25px;
+  border-bottom: 1px solid #2b2b2b;
+  padding-bottom: 10px;
+}
+
+.footer-tabs .tab {
+  background: none;
+  border: none;
+  color: #bbb;
+  font-size: 15px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 5px 0;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+.footer-tabs .tab.active {
+  color: #7fff7f;
+  border-bottom: 2px solid #7fff7f;
+}
+
+.footer-tabs .tab:hover {
+  color: #7fff7f;
+}
+
+.tab-content {
+  margin-top: 15px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ==============================
+   Note Card Styling
+   ============================== */
+.note-card {
+  background: #181818;
+  border: 1px solid #2b2b2b;
+  border-radius: 10px;
+  padding: 15px 20px;
+  color: #ddd;
+  font-size: 15px;
+  line-height: 1.6;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.note-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(0, 255, 120, 0.15);
+}
+
+.note-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.note-meta i {
+  color: #7fff7f;
+}
+
+.note-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.note-actions i {
+  font-size: 14px;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.note-actions i:hover {
+  color: #7fff7f;
+}
+
+.note-delete {
+  color: #e66;
+}
+
+.note-delete:hover {
+  color: #ff7f7f;
+}
+
+
+
+/* ---------- Overlay ---------- */
+
+.overlay.active {
+  display: block;
+}
+
+
+.note-popup h3 {
+  color: #7fff7f;
+  margin-bottom: 15px;
+}
+
+.note-popup input,
+.note-popup textarea {
+  width: 100%;
+  background: #121212;
+  border: 1px solid #333;
+  color: #fff;
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin-bottom: 19px;
+  resize: none;
+}
+
+.popup-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.note-popup .btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  border: none;
+  transition: 0.2s;
+}
+
+.note-popup .btn.save {
+  background: #2a6;
+  color: #fff;
+}
+.note-popup .btn.cancel {
+  background: #333;
+  color: #ccc;
+}
+
+.book-footer {
+  margin-top: 30px;
+  background: #1a1a1a;
+  border: 1px solid #2b2b2b;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.book-footer .footer-tabs {
+  display: flex;
+  justify-content: flex-start;
+  gap: 25px;
+  border-bottom: 1px solid #2b2b2b;
+  padding-bottom: 10px;
+}
+
+.book-footer .tab {
+  background: none;
+  border: none;
+  color: #bbb;
+  font-size: 15px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 5px 0;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+.book-footer .tab.active {
+  color: #7fff7f;
+  border-bottom: 2px solid #7fff7f;
+}
+
+/* Note Section */
+.note-card {
+  width: 35%;
+  background: #181818;
+  border: 1px solid #2b2b2b;
+  border-radius: 10px;
+  padding: 10px 20px;
+  color: #ddd;
+  font-size: 15px;
+  line-height: 1.6;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.note-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(0, 255, 120, 0.15);
+}
+
+.note-card h3 {
+  font-size: 16px;
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 3px; /* 👈 Giảm khoảng cách giữa tiêu đề và date */
+  margin-top: -2px;
+}
+
+/* Ngày giờ ghi chú */
+.note-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #999;
+  margin-bottom: 30px; /* 👈 Giảm xuống cho sát phần nội dung */
+  margin-top: -2px;   /* 👈 Kéo date lên gần tiêu đề hơn */
+}
+
+.note-meta i {
+  color: #7fff7f;
+  font-size: 13px;
+}
+
+/* Empty Note */
+.empty-note {
+  text-align: center;
+  color: #888;
+  padding: 20px;
+}
+.empty-note i {
+  font-size: 28px;
+  color: #7fff7f;
+  margin-bottom: 10px;
+}
+
+/* Popup + Overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65); /* Làm mờ tối hơn */
+  backdrop-filter: blur(3px); /* Tạo cảm giác kính mờ */
+  z-index: 200;
+  display: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Khi kích hoạt */
+.overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+/* Popup tổng */
+.note-popup {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 201;
+  display: none;
+  animation: popupFade 0.25s ease;
+}
+
+/* Khi bật */
+.note-popup.active {
+  display: flex;
+}
+
+/* Khung nội dung popup */
+.popup-container {
+  background: #181818;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  padding: 24px;
+  width: 420px;
+  box-shadow: 0 0 20px rgba(0, 255, 120, 0.15);
+  animation: scaleIn 0.25s ease;
+}
+
+/* Tiêu đề popup */
+.popup-title {
+  color: #7fff7f;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+/* Input + Textarea */
+.popup-container input,
+.popup-container textarea {
+  width: 100%;
+  background: #121212;
+  border: 1px solid #333;
+  color: #fff;
+  border-radius: 8px;
+  padding: 10px 2px;
+  font-size: 14px;
+  margin-bottom: 12px;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.popup-container input:focus,
+.popup-container textarea:focus {
+  border: 1px solid #7fff7f;
+  box-shadow: 0 0 6px #7fff7f40;
+  outline: none;
+}
+
+.popup-container textarea {
+  resize: none;
+  min-height: 100px;
+}
+
+/* Label */
+.popup-container label {
+  display: block;
+  font-size: 13px;
+  color: #bbb;
+  margin-bottom: 4px;
+}
+
+/* Nút hành động */
+.popup-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn.save {
+  background: #2a6;
+  color: white;
+}
+
+.btn.save:hover {
+  background: #38c976;
+}
+
+.btn.cancel {
+  background: #2a2a2a;
+  color: #ccc;
+}
+.btn.cancel:hover {
+  background: #3a3a3a;
+}
+
+
+/* Hiệu ứng */
+@keyframes scaleIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes popupFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 900px) {
+  .detail-columns {
+    flex-direction: column;
+  }
+}
+
+

@@ -1,0 +1,47 @@
+extends layout
+
+block content
+  section.dashboard
+
+    if readingBooks.length
+      .section-block
+        h2.section-title
+          i(class="fa-solid fa-book-open-reader")
+          |  Sách đang đọc
+        .books-row
+          each book in readingBooks
+            a.book-card(href=`/book/${book._id}`)
+              img(src=book.image || "/img/default-cover.jpg", alt=book.title)
+              p.book-title= book.title
+              if book.author
+                p.book-author= book.author
+
+    // ---- Mới thêm ----
+    if latestBooks.length
+      .section-block
+        h2.section-title
+          i(class="fa-solid fa-clock-rotate-left")
+          |  Sách mới thêm gần đây
+        .books-row
+          each book in latestBooks
+            a.book-card(href=`/book/${book._id}`)
+              img(src=book.image || "/img/default-cover.jpg", alt=book.title)
+              p.book-title= book.title
+              if book.author
+                p.book-author= book.author
+
+    // ---- Ngẫu nhiên ----
+    if randomBooks.length
+      .section-block
+        h2.section-title
+          i(class="fa-solid fa-wand-magic-sparkles")
+          |  Khám phá ngẫu nhiên
+        .books-row
+          each book in randomBooks
+            a.book-card(href=`/book/${book._id}`)
+              img(src=book.image || "/img/default-cover.jpg", alt=book.title)
+              p.book-title= book.title
+              if book.author
+                p.book-author= book.author
+
+

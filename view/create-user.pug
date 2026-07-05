@@ -1,0 +1,33 @@
+//- views/create-user.pug
+extends layout
+
+block content
+  // --- Overlay ---
+  .modal-overlay
+    .modal-container
+      h2.modal-title Thêm người dùng
+
+      form(action="/user" method="post" class="user-form")
+        .form-group
+          label(for="username") Tên đăng nhập
+          input(type="text" name="username" placeholder="Nhập username..." required)
+
+        .form-group
+          label(for="fullname") Họ và tên
+          input(type="text" name="fullname" placeholder="Nhập họ tên..." required)
+
+        .form-group
+          label(for="role") Vai trò
+          select(name="role")
+            option(value="student" selected) Sinh viên
+            option(value="lecturer") Giảng viên
+            option(value="admin") Quản trị viên
+
+        .form-group
+          label(for="password") Mật khẩu
+          input(type="password" name="password" placeholder="Nhập mật khẩu..." required)
+
+        .form-actions
+          a.btn-cancel(href="/settings") Hủy
+          button.btn-save(type="submit")
+            i(class="fa-solid fa-floppy-disk")

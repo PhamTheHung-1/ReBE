@@ -1,0 +1,206 @@
+/* Khu vực chính của trang All Books */
+.main-content {
+  margin-left: 240px; /* chừa chỗ cho sidebar */
+  padding: 20px 15px;
+  background-color: #0e0e0e;
+  color: #fff;
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+/* Container chính */
+.books-container {
+  margin-top: -2px; /* cách header một chút */
+  background: #121212;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #1e1e1e;
+}
+
+/* Header phần All Books */
+.books-header {
+  position: sticky;     /* hoặc fixed nếu muốn luôn ở top */
+  top: 0;
+  z-index: 50;          /* nằm trên grid sách */
+  background: rgba(18, 18, 18, 0.95); /* nền mờ */
+  backdrop-filter: blur(4px);         /* hiệu ứng kính mờ */
+  border-bottom: 1px solid #2a2a2a;   /* đường viền nhẹ */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: -1px 10px;
+  margin: 0;
+}
+
+
+.page-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #f3f3f3;
+}
+
+/* Thanh công cụ bên phải */
+.books-tools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-btn {
+  background: #181818;
+  border: 1px solid #2a2a2a;
+  color: #aaa;
+  font-size: 15px;
+  border-radius: 8px;
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.icon-btn:hover {
+  color: #7fff7f;
+  background: #1f1f1f;
+  border-color: #7fff7f;
+}
+
+/* Ô tìm kiếm nhỏ bên phải */
+.search-mini {
+  display: flex;
+  align-items: center;
+  background: #1a1a1a;
+  border: 1px solid #2b2b2b;
+  border-radius: 8px;
+  padding: 6px 10px;
+}
+
+.search-mini input {
+  background: none;
+  border: none;
+  outline: none;
+  color: #ddd;
+  font-size: 13px;
+  width: 200px;
+}
+
+.search-mini i {
+  color: #7fff7f;
+  margin-left: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Lưới sách */
+.books-grid {
+  display: grid;
+  padding: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+}
+
+/* Card sách */
+.book-card {
+  background: #161616;
+  border-radius: 10px;
+  border: 1px solid #1f1f1f;
+  overflow: hidden;
+  text-align: center;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+  border-color: #7fff7f;
+  box-shadow: 0 4px 10px rgba(0, 255, 100, 0.15);
+}
+
+/* Ảnh bìa */
+.book-cover img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+.book-cover a {
+  display: block;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.book-cover a:hover img {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* Tên sách */
+.book-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: #eaeaea;
+  margin: 8px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.sort-container {
+  position: relative;
+  display: inline-block;
+}
+
+.sort-menu {
+  position: absolute;
+  right: 0;
+  top: 45px;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  list-style: none;
+  padding: 6px 0;
+  margin: 0;
+  width: 200px;
+  z-index: 100;
+  animation: fadeIn 0.2s ease;
+}
+
+.sort-menu.hide {
+  display: none;
+}
+
+.sort-menu li {
+  padding: 8px 14px;
+  font-size: 14px;
+  color: #ddd;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.sort-menu li:hover {
+  background: #222;
+  color: #7fff7f;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scrollbar */
+.main-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.main-content::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+.main-content::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+

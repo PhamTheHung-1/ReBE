@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  section.books-container
+    .books-header
+      h2.page-title Thư viện: Truyện tranh
+      .books-tools
+        .sort-container
+          button#sortBtn.icon-btn(title="Sắp xếp")
+            i(class="fa-solid fa-arrow-down-wide-short")
+          ul#sortMenu.sort-menu.hide
+            li(data-sort="title-asc") Tiêu đề (A → Z)
+            li(data-sort="title-desc") Tiêu đề (Z → A)
+            li(data-sort="newest") Mới nhất
+            li(data-sort="oldest") Cũ nhất
+            
+        button.icon-btn(title="Grid View"): i(class="fa-solid fa-table-cells")
+        form.search-mini(action="/search" method="GET")
+          input(type="text", name="searchQuery" placeholder="Tác giả, Tác phẩm, Thể loại...")
+          i(class="fa-solid fa-magnifying-glass")
+
+    .books-grid
+      each book in books
+        .book-card
+          .book-cover
+            a(href=`/book/${book._id}`)
+              img(src=book.image, alt=book.title, href=`/book/${book._id}`)
+          .book-title= book.title
+
+
+  script(src="/book.js")
